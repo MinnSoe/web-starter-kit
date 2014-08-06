@@ -87,7 +87,6 @@ gulp.task('styles', function () {
       'app/styles/**/*.css',
       'app/styles/components/components.scss'
     ])
-    .pipe($.changed('.tmp/styles', {extension: '.css'}))
     .pipe($.if('*.scss', $.rubySass({
       style: 'expanded',
       precision: 10
@@ -126,7 +125,7 @@ gulp.task('html', function () {
     .pipe(assets.restore())
     .pipe($.useref())
     // Update Production Style Guide Paths
-    .pipe($.replace('components/components.css', 'components/main.min.css'))
+    .pipe($.replace('/styles/components.css', '../styles/components/main.min.css'))
     // Minify Any HTML
     .pipe($.if('*.html', $.minifyHtml()))
     // Output Files
